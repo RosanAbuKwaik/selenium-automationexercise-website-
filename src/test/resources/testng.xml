@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AutomationExercise Test Suite" verbose="1" parallel="false">
+
+    <parameter name="browser" value="chrome"/>
+
+    <!-- ═══════════════════════════════════════════
+         WORKFLOW 1 — User Registration & Login
+         ═══════════════════════════════════════════ -->
+    <test name="Workflow1 - Registration and Login">
+        <groups>
+            <run>
+                <include name="registration"/>
+                <include name="login"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.autoex.tests.Workflow1_RegistrationLoginTest"/>
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════
+         WORKFLOW 2 — Product Search & Cart
+         ═══════════════════════════════════════════ -->
+    <test name="Workflow2 - Product Search and Cart">
+        <groups>
+            <run>
+                <include name="products"/>
+                <include name="cart"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.autoex.tests.Workflow2_ProductSearchCartTest"/>
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════
+         WORKFLOW 3 — Checkout & Order Placement
+         ═══════════════════════════════════════════ -->
+    <test name="Workflow3 - Checkout and Order">
+        <groups>
+            <run>
+                <include name="checkout"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.autoex.tests.Workflow3_CheckoutTest"/>
+        </classes>
+    </test>
+
+    <!-- Smoke suite (positive only) -->
+    <test name="Smoke - Positive Tests Only">
+        <groups>
+            <run>
+                <include name="positive"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.autoex.tests.Workflow1_RegistrationLoginTest"/>
+            <class name="com.autoex.tests.Workflow2_ProductSearchCartTest"/>
+            <class name="com.autoex.tests.Workflow3_CheckoutTest"/>
+        </classes>
+    </test>
+
+</suite>
