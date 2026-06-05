@@ -1,40 +1,34 @@
 AutomationExercise Selenium Framework
-This project is a robust Test Automation Framework built for AutomationExercise. It follows the Page Object Model (POM) design pattern and is built using Java, Selenium WebDriver, and TestNG.
+This is a comprehensive Test Automation Framework designed to test the AutomationExercise website. The framework follows the Page Object Model (POM) design pattern and is built with scalability and maintainability in mind.
 
-🛠 Tech Stack
-Java 11
+🚀 Key Highlights
+Comprehensive Coverage: The framework includes 32 automated test cases, covering full user flows from registration and login to product browsing, cart management, and checkout processes.
 
-Selenium WebDriver 4.x
+Architecture: Implements a robust POM structure combined with Data-Driven Testing techniques.
 
-TestNG (Test framework)
+Tech Stack:
 
-WebDriverManager (Browser driver management)
+Java 11 & Selenium WebDriver 4.x
 
-ExtentReports (Test reporting)
+TestNG for advanced test orchestration.
 
-Maven (Dependency management)
+ExtentReports for detailed, professional test execution reporting.
 
-GitHub Actions (CI/CD Pipeline)
+GitHub Actions for automated CI/CD integration.
 
 📂 Project Structure
-Plaintext
+
 ├── src/main/java/com/autoex
-│   ├── pages/           # Page Object Model classes
-│   ├── utils/           # Utility and Helper classes
+│   ├── pages/           # Page Objects (POM)
+│   └── utils/           # Utility and Helper classes
 ├── src/test/java/com/autoex
-│   ├── tests/           # Test classes (TestNG)
+│   ├── tests/           # 32+ Automated Test Cases
 │   └── dataproviders/   # Data-driven test sources
 └── src/test/resources/
     └── testng.xml       # Test Suite configuration
-🚀 How to Run Locally
-Ensure you have JDK 11 and Maven installed on your machine.
 
-Clone the repository:
+CI/CD Integration
+This project is fully automated. Every code change pushed to the repository triggers a GitHub Actions workflow, which automatically compiles the project and executes the full test suite of 32 cases to ensure continuous quality.
 
-Bash
-Run the tests using Maven:
 
-Bash
-mvn test
-⚙️ CI/CD Pipeline
-The project is fully integrated with GitHub Actions. Every push or pull request to the main branch automatically triggers the test suite defined in testng.xml, ensuring continuous quality assurance.
+    
