@@ -1,6 +1,5 @@
 package com.autoex.tests;
 
-import com.autoex.dataproviders.LoginDataProvider;
 import com.autoex.dataproviders.RegistrationDataProvider;
 import com.autoex.pages.*;
 import com.autoex.utils.ExtentManager;
@@ -8,7 +7,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.autoex.utils.DriverManager;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class Workflow1_RegistrationLoginTest extends BaseTest {
@@ -17,12 +16,13 @@ public class Workflow1_RegistrationLoginTest extends BaseTest {
     private LoginPage loginPage;
     private RegisterPage reg;
 
-    @BeforeClass(alwaysRun = true) 
+    @BeforeMethod(alwaysRun = true) 
     public void setupPages() {
         this.home = new HomePage(DriverManager.getDriver());
         this.loginPage = new LoginPage(DriverManager.getDriver());
         this.reg = new RegisterPage(DriverManager.getDriver());
     }
+
     @Test(
         dataProvider = "registrationPositiveData",
         dataProviderClass = RegistrationDataProvider.class,
@@ -55,5 +55,4 @@ public class Workflow1_RegistrationLoginTest extends BaseTest {
         
         home.deleteAccount(); 
     }
-
 }

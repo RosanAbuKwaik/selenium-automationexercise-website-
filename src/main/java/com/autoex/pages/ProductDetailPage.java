@@ -8,7 +8,6 @@ public class ProductDetailPage extends BasePage {
 
     private By productName = By.cssSelector(".product-information h2");
     private By productPrice = By.cssSelector(".product-information span span");
-    private By productCategory = By.cssSelector(".product-information p:nth-child(3)");
     private By productAvailability = By.cssSelector(".product-information p:nth-child(6)");
     private By quantityField = By.id("quantity");
     private By addToCartButton = By.cssSelector(".cart");

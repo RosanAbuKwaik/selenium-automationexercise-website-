@@ -23,44 +23,42 @@ public class BaseTest {
 
     protected WebDriver driver; 
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
+    public void setUpMethod(Method method) {
+        DriverManager.initDriver(); 
+        this.driver = DriverManager.getDriver();
+        
+        driver.manage().window().maximize();
+        ExtentManager.createTest(method.getName(), "Running test: " + method.getName());
+    }
+    
+    @BeforeClass(alwaysRun = true) 
     public void setUpClass() {
         DriverManager.initDriver();
         this.driver = DriverManager.getDriver();
+        driver.manage().window().maximize();
     }
-    
-    
-    
-
-    @BeforeMethod(alwaysRun = true)
-    public void setUpMethod(Method method) {
-        Test annotation = method.getAnnotation(Test.class);
-        String desc = (annotation != null) ? annotation.description() : "";
-        ExtentManager.createTest(method.getName(), desc);
-    }
-
-
     
     @AfterMethod(alwaysRun = true)
     public void tearDownMethod(ITestResult result) {
         ExtentTest test = ExtentManager.getTest();
         
         if (result.getStatus() == ITestResult.FAILURE) {
-            test.log(Status.FAIL, result.getThrowable().getMessage());
-                if (ConfigReader.screenshotOnFail() && driver != null) { 
-                String path = captureScreenshot(result.getName());
-                if (path != null) {
-                    try { test.addScreenCaptureFromPath(path, "Failure"); }
-                    catch (Exception ignored) {}
+            test.log(Status.FAIL, "Test Failed: " + result.getThrowable().getMessage());
+            
+            if (ConfigReader.screenshotOnFail() && driver != null) {
+                try {
+                    String path = captureScreenshot(result.getName());
+                    if (path != null) test.addScreenCaptureFromPath(path, "Failure Screenshot");
+                } catch (Exception e) {
+                    System.out.println("  Faild to catch: " + e.getMessage());
                 }
             }
-        } else if (result.getStatus() == ITestResult.SUCCESS) {
-            test.log(Status.PASS, "PASSED");
-        } else {
-            test.log(Status.SKIP, "SKIPPED");
         }
+        
+        DriverManager.quitDriver();
     }
-        @AfterClass(alwaysRun = true)
+    @AfterClass(alwaysRun = true) 
     public void tearDownClass() {
         DriverManager.quitDriver();
     }
@@ -76,9 +74,12 @@ public class BaseTest {
             Files.createDirectories(Paths.get(dir));
             String ts = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String out = dir + "/" + testName + "_" + ts + ".png";
+            
             File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             Files.copy(src.toPath(), Paths.get(out));
             return out;
-        } catch (IOException e) { return null; }
+        } catch (IOException e) { 
+            return null; 
+        }
     }
 }

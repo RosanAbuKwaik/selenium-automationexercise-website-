@@ -6,9 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CheckoutPage extends BasePage {
 
-    private By checkoutInfo = By.cssSelector(".checkout-information");
     private By deliveryAddress = By.id("address_delivery");
-    private By billingAddress = By.id("address_invoice");
     private By orderRows = By.cssSelector("#cart_info tbody tr");
     private By commentField = By.cssSelector(".form-control[name='message']");
     private By placeOrderButton = By.cssSelector("a[href='/payment']");
@@ -21,7 +19,6 @@ public class CheckoutPage extends BasePage {
     private By payButton = By.cssSelector("[data-qa='pay-button']");
 
     private By orderPlacedHeader = By.cssSelector("[data-qa='order-placed']");
-    private By confirmationText = By.cssSelector(".col-sm-9 p");
 
     public CheckoutPage(WebDriver driver) {
         super(driver);

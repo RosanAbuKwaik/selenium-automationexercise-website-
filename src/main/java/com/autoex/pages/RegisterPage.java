@@ -12,11 +12,8 @@ public class RegisterPage extends BasePage {
     private By daysDropdown = By.cssSelector("[data-qa='days']");
     private By monthsDropdown = By.cssSelector("[data-qa='months']");
     private By yearsDropdown = By.cssSelector("[data-qa='years']");
-    private By newsletterCheckbox = By.id("newsletter");
-    private By specialOffersCheckbox = By.id("optin");
     private By firstNameField = By.cssSelector("[data-qa='first_name']");
     private By lastNameField = By.cssSelector("[data-qa='last_name']");
-    private By companyField = By.cssSelector("[data-qa='company']");
     private By addressField = By.cssSelector("[data-qa='address']");
     private By countryDropdown = By.cssSelector("[data-qa='country']");
     private By stateField = By.cssSelector("[data-qa='state']");
